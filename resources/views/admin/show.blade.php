@@ -20,7 +20,12 @@
         </div>
     </div>
     <div class="sidebar-right bg-dark-subtle">
-        <div class="container p-5 d-flex justify-content-center">
+        <div class="container p-5 d-flex flex-column align-items-center">
+            @if (session()->has('message'))
+            <div class="alert alert-success" role="alert">
+                {{ session()->get('message') }}
+            </div>
+            @endif
             <div class="card w-50">
                 <img src="{{$work->image}}" alt="{{$work->name}}">
                 <div class="card-body">

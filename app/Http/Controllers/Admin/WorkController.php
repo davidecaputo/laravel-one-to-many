@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Work;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Type;
 use Illuminate\Support\Str;
 
 class WorkController extends Controller
@@ -27,7 +28,8 @@ class WorkController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        $types = Type::all();
+        return view('admin.create', compact('types'));
     }
 
     /**
@@ -41,7 +43,7 @@ class WorkController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($data['name'], '-');
         $newWork = Work::create($data);
-        return redirect()->route('admin.works.show', $newWork->slug);
+        return redirect()->route('admin.works.show', $newWork->slug)->with('message', "Il lavoro: $newWork->name è stato creato con successo");
     }
 
     /**
@@ -63,7 +65,8 @@ class WorkController extends Controller
      */
     public function edit(Work $work)
     {
-        return view('admin.edit', compact('work'));
+        $types = Type::all();
+        return view('admin.edit', compact('work', 'types'));
     }
 
     /**

@@ -25,7 +25,7 @@
                 <form action="{{ route('admin.works.store') }}" method="POST" class="text-white">
                     @csrf
                     <div class="mb-3">
-                        <label for="title" class="form-label">Nome</label>
+                        <label for="name" class="form-label">Nome</label>
                         <input type="text" class="form-control" name="name" id="name">
                     </div>
                     <div class="mb-3">
@@ -33,8 +33,17 @@
                         <input type="text" class="form-control" name="image" id="image">
                     </div>
                     <div class="mb-3">
-                        <label for="price" class="form-label">Link</label>
+                        <label for="link" class="form-label">Link</label>
                         <input type="text" class="form-control" name="link" id="link">
+                    </div>
+                    <div class="mb-3">
+                        <label for="type_id" class="form-label">Tipo</label>
+                        <select class="form-select" name="type_id" id="type_id">
+                            <option value="" selected>Seleziona</option>
+                            @foreach ($types as $type)
+                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-floating mb-3">
                         <textarea class="form-control" placeholder="Leave a comment here" name="description" id="description"

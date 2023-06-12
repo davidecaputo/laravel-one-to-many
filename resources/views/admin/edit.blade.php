@@ -37,6 +37,15 @@
                         <label for="price" class="form-label">Link</label>
                         <input type="text" class="form-control" name="link" id="link" value="{{$work->link}}">
                     </div>
+                    <div class="mb-3">
+                        <label for="type_id" class="form-label">Tipo</label>
+                        <select class="form-select" name="type_id" id="type_id">
+                            <option>Seleziona</option>
+                            @foreach ($types as $type)
+                                <option value="{{ $type->id }}" @if($type->id == $work->type_id) selected @endif>{{ $type->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="form-floating mb-3">
                         <textarea class="form-control" placeholder="Leave a comment here" name="description" id="description" style="height: 100px">{{$work->description}}</textarea>
                         <label for="description">Descrizione</label>
